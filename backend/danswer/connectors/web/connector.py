@@ -15,6 +15,7 @@ from playwright.sync_api import BrowserContext
 from playwright.sync_api import Playwright
 from playwright.sync_api import sync_playwright
 from PyPDF2 import PdfReader
+import xml.etree.ElementTree as ET
 from requests_oauthlib import OAuth2Session  # type:ignore
 
 from danswer.configs.app_configs import INDEX_BATCH_SIZE
@@ -168,6 +169,7 @@ class WebConnector(LoadConnector):
 
         playwright, context = start_playwright()
         restart_playwright = False
+        use_sitemap_indexing = False 
         while to_visit:
             current_url = to_visit.pop()
             if current_url in visited_links:
@@ -202,6 +204,22 @@ class WebConnector(LoadConnector):
                     )
                     continue
 
+                if current_url.split(".")[-1] == "xml":
+                    response = requests.get(current_url)
+                    if response.status_code == 200:
+                        root = ET.fromstring(response.content)
+                        namespace = root.tag.split('}')[0][1:]
+                        
+                        if namespace == "http://www.sitemaps.org/schemas/sitemap/0.9":
+                            logger.info(f"Using sitemap: {current_url}")
+                            for loc in root.findall(".//ns:loc", namespaces={'ns': namespace}):
+                                to_visit.append(loc.text)
+                                visited_links.add(current_url)
+                                use_sitemap_indexing = True
+                                continue
+                    else:
+                        logger.info(f"Failed to fetch sitemap: {current_url}. Status code: {response.status_code}")
+
                 page = context.new_page()
                 page.goto(current_url)
                 final_page = page.url
@@ -216,10 +234,12 @@ class WebConnector(LoadConnector):
                 content = page.content()
                 soup = BeautifulSoup(content, "html.parser")
 
-                internal_links = get_internal_links(self.base_url, current_url, soup)
-                for link in internal_links:
-                    if link not in visited_links:
-                        to_visit.append(link)
+                # Do not get internal links when indexing sitemap url's
+                if not use_sitemap_indexing:
+                    internal_links = get_internal_links(self.base_url, current_url, soup)
+                    for link in internal_links:
+                        if link not in visited_links:
+                            to_visit.append(link)
 
                 title_tag = soup.find("title")
                 title = None
