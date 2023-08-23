@@ -170,6 +170,7 @@ class WebConnector(LoadConnector):
         playwright, context = start_playwright()
         restart_playwright = False
         use_sitemap_indexing = False 
+        require_js = False # include ?require_js in the url if content is dynamic
         while to_visit:
             current_url = to_visit.pop()
             if current_url in visited_links:
@@ -184,6 +185,9 @@ class WebConnector(LoadConnector):
                 if restart_playwright:
                     playwright, context = start_playwright()
                     restart_playwright = False
+                
+                if "require_js" in current_url:
+                    require_js = True
 
                 if current_url.split(".")[-1] == "pdf":
                     # PDF files are not checked for links
@@ -222,6 +226,8 @@ class WebConnector(LoadConnector):
 
                 page = context.new_page()
                 page.goto(current_url)
+                if require_js:
+                    page.wait_for_load_state('networkidle')
                 final_page = page.url
                 if final_page != current_url:
                     logger.info(f"Redirected to {final_page}")
