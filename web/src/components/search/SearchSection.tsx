@@ -182,7 +182,7 @@ export const SearchSection: React.FC<SearchSectionProps> = ({
           />
         </div>
       </div>
-      <div className="w-[800px] mx-auto">
+      <div className="max-w-[800px] mx-auto">
         <SearchTypeSelector
           selectedSearchType={selectedSearchType}
           setSelectedSearchType={(searchType) => {

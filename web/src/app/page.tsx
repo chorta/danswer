@@ -33,10 +33,12 @@ export default async function Home() {
   const user = results[0] as User | null;
   const connectorsResponse = results[1] as Response | null;
 
+  /* ENABLE TO RESTORE DEFAUL AUTH BY GOOGLE 
+
   if (!DISABLE_AUTH && !user) {
     return redirect("/auth/login");
   }
-
+*/
   let connectors: Connector<any>[] = [];
   if (connectorsResponse?.ok) {
     connectors = await connectorsResponse.json();
@@ -61,12 +63,13 @@ export default async function Home() {
         <HealthCheckBanner />
       </div>
       <ApiKeyModal />
-      <div className="px-24 pt-10 flex flex-col items-center min-h-screen bg-gray-900 text-gray-100">
+      <div className="px-24 pt-10 flex flex-col items-center min-h-screen text-gray-100">
         <div className="w-full">
           <SearchSection
             connectors={connectors}
             defaultSearchType={searchTypeDefault}
           />
+          <div className="justify-center text-center text-coolgray text-sm mt-10">Powered by <a className="text-blue-700" href="https://www.danswer.ai/">Dawnswer</a></div>       
         </div>
       </div>
     </>

@@ -50,14 +50,14 @@ export const Header: React.FC<HeaderProps> = ({ user }) => {
   }, [dropdownOpen]);
 
   return (
-    <header className="bg-gray-800 text-gray-200 py-4">
+    <header className="bg-ucblue text-gray-200 py-4">
       <div className="mx-8 flex">
         <Link href="/">
           <div className="flex">
-            <div className="h-[32px] w-[30px]">
-              <Image src="/logo.png" alt="Logo" width="1419" height="1520" />
+            <div className="h-[60px] w-[250px]" style={{ margin: '10px 0 0 0' }}>
+              <Image src="/ucsd-logo-white.png" alt="Logo" width="1419" height="1520" />
             </div>
-            <h1 className="flex text-2xl font-bold my-auto">Danswer</h1>
+            {/*<h1 className="flex text-2xl font-bold my-auto">Danswer</h1>*/}
           </div>
         </Link>
 

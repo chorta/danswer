@@ -1,7 +1,17 @@
 import { SearchType } from "@/lib/search/interfaces";
 
 const defaultStyle =
-  "py-1 px-2 border rounded border-gray-700 cursor-pointer font-bold ";
+  "py-2 px-4 border rounded border-ucblue bg-ucblue cursor-pointer font-bold ";
+
+  const converted = {
+    fontSize: "0.9375em",
+    textTransform: "uppercase",
+    padding: "0.8em 1.5em",
+    minWidth: "200px",
+    marginBottom: "1em",
+    letterSpacing: "0.08em",
+    fontWeight: 700
+  }
 
 interface Props {
   selectedSearchType: SearchType;
@@ -13,13 +23,13 @@ export const SearchTypeSelector: React.FC<Props> = ({
   setSelectedSearchType,
 }) => {
   return (
-    <div className="flex text-xs">
+    <div className="flex text-sm">
       <div
         className={
-          defaultStyle +
+          defaultStyle + 
           (selectedSearchType === SearchType.AUTOMATIC
-            ? "bg-blue-500"
-            : "bg-gray-800 hover:bg-gray-600")
+            ? "bg-ucnavy text-red border-2 border-solid border-ucnavy"
+            : "bg-ucblue border-2 border-solid border-ucblue")
         }
         onClick={() => setSelectedSearchType(SearchType.AUTOMATIC)}
       >
@@ -31,8 +41,8 @@ export const SearchTypeSelector: React.FC<Props> = ({
           defaultStyle +
           "ml-2 " +
           (selectedSearchType === SearchType.SEMANTIC
-            ? "bg-blue-500"
-            : "bg-gray-800 hover:bg-gray-600")
+            ? "bg-ucnavy"
+            : "bg-gray-800 hover:bg-ucnavy")
         }
         onClick={() => setSelectedSearchType(SearchType.SEMANTIC)}
       >
@@ -45,7 +55,7 @@ export const SearchTypeSelector: React.FC<Props> = ({
           "ml-2 " +
           (selectedSearchType === SearchType.KEYWORD
             ? "bg-blue-500"
-            : "bg-gray-800 hover:bg-gray-600")
+            : "bg-gray-800 hover:bg-ucnavy")
         }
         onClick={() => setSelectedSearchType(SearchType.KEYWORD)}
       >
