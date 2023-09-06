@@ -3,16 +3,8 @@ import { SearchType } from "@/lib/search/interfaces";
 const defaultStyle =
   "py-2 px-4 border rounded border-ucblue bg-ucblue cursor-pointer font-bold ";
 
-  const converted = {
-    fontSize: "0.9375em",
-    textTransform: "uppercase",
-    padding: "0.8em 1.5em",
-    minWidth: "200px",
-    marginBottom: "1em",
-    letterSpacing: "0.08em",
-    fontWeight: 700
-  }
 
+  
 interface Props {
   selectedSearchType: SearchType;
   setSelectedSearchType: (searchType: SearchType) => void;

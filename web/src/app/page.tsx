@@ -33,12 +33,10 @@ export default async function Home() {
   const user = results[0] as User | null;
   const connectorsResponse = results[1] as Response | null;
 
-  /* ENABLE TO RESTORE DEFAUL AUTH BY GOOGLE 
-
   if (!DISABLE_AUTH && !user) {
     return redirect("/auth/login");
   }
-*/
+
   let connectors: Connector<any>[] = [];
   if (connectorsResponse?.ok) {
     connectors = await connectorsResponse.json();
