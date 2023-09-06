@@ -80,7 +80,7 @@ export const SearchResultsDisplay: React.FC<SearchResultsDisplayProps> = ({
       </div>
     );
   } else if (answer) {
-    answerDisplay = <p className="mb-4">{answer}</p>;
+    answerDisplay = <p className="mb-4 text-gray-800">{answer}</p>;
   } else if (!isFetching) {
     answerDisplay = (
       <div className="text-sm my-auto text-gray-800">Information not found</div>
@@ -93,7 +93,7 @@ export const SearchResultsDisplay: React.FC<SearchResultsDisplayProps> = ({
         <div className="min-h-[14rem]">
           <div className="p-4 border-2 rounded-md border-gray-700">
             <div className="flex mb-1">
-              <h2 className="text font-bold my-auto">AI Answer</h2>
+              <h2 className="text text-gray-800 font-bold my-auto">AI Answer</h2>
             </div>
             {answerDisplay}
 
@@ -108,7 +108,7 @@ export const SearchResultsDisplay: React.FC<SearchResultsDisplayProps> = ({
                       dedupedQuotes.map((quoteInfo) => (
                         <a
                           key={quoteInfo.document_id}
-                          className="p-2 ml-1 border border-gray-800 rounded-lg text-sm flex max-w-[280px] hover:bg-gray-800"
+                          className="p-2 ml-1 border border-gray-800 rounded-lg text-sm flex max-w-[280px] text-ucblue hover:bg-ucnavy"
                           href={quoteInfo.link || undefined}
                           target="_blank"
                           rel="noopener noreferrer"
@@ -142,7 +142,7 @@ export const SearchResultsDisplay: React.FC<SearchResultsDisplayProps> = ({
 
       {documents && documents.length > 0 && (
         <div className="mt-4">
-          <div className="font-bold border-b mb-4 pb-1 border-gray-800">
+          <div className="font-bold text-gray-800 border-b mb-4 pb-1 border-gray-800">
             Results
           </div>
           {removeDuplicateDocs(documents).map((doc) => (
