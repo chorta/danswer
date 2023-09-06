@@ -50,7 +50,7 @@ export const SearchResultsDisplay: React.FC<SearchResultsDisplayProps> = ({
   }
 
   if (answer === null && documents === null && quotes === null) {
-    return <div className="text-gray-300">No matching documents found.</div>;
+    return <div className="text-gray-800">No matching documents found.</div>;
   }
 
   const dedupedQuotes: Quote[] = [];
@@ -83,7 +83,7 @@ export const SearchResultsDisplay: React.FC<SearchResultsDisplayProps> = ({
     answerDisplay = <p className="mb-4">{answer}</p>;
   } else if (!isFetching) {
     answerDisplay = (
-      <div className="text-sm my-auto text-gray-300">Information not found</div>
+      <div className="text-sm my-auto text-gray-800">Information not found</div>
     );
   }
 
@@ -164,7 +164,7 @@ export const SearchResultsDisplay: React.FC<SearchResultsDisplayProps> = ({
                   {doc.semantic_identifier || doc.document_id}
                 </p>
               </a>
-              <p className="pl-1 py-3 text-gray-200">{doc.blurb}</p>
+              <p className="pl-1 py-3 text-gray-800">{doc.blurb}</p>
             </div>
           ))}
         </div>
