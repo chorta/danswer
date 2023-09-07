@@ -80,7 +80,7 @@ export const SearchResultsDisplay: React.FC<SearchResultsDisplayProps> = ({
       </div>
     );
   } else if (answer) {
-    answerDisplay = <p className="mb-4 text-gray-800">{answer}</p>;
+    answerDisplay = <p className="mb-4">{answer}</p>;
   } else if (!isFetching) {
     answerDisplay = (
       <div className="text-sm my-auto text-gray-800">Information not found</div>
@@ -93,13 +93,13 @@ export const SearchResultsDisplay: React.FC<SearchResultsDisplayProps> = ({
         <div className="min-h-[14rem]">
           <div className="p-4 border-2 rounded-md border-gray-700">
             <div className="flex mb-1">
-              <h2 className="text text-gray-800 font-bold my-auto">AI Answer</h2>
+              <h2 className="text font-bold my-auto">AI Answer</h2>
             </div>
             {answerDisplay}
 
             {quotes !== null && answer && (
               <>
-                <h2 className="text-sm font-bold mb-2">Sources</h2>
+                <h2 className="text-sm text-gray-800 font-bold mb-2">Sources</h2>
                 {isFetching && dedupedQuotes.length === 0 ? (
                   <LoadingAnimation text="Finding quotes" size="text-sm" />
                 ) : (
@@ -108,13 +108,13 @@ export const SearchResultsDisplay: React.FC<SearchResultsDisplayProps> = ({
                       dedupedQuotes.map((quoteInfo) => (
                         <a
                           key={quoteInfo.document_id}
-                          className="p-2 ml-1 border border-gray-800 rounded-lg text-sm flex max-w-[280px] text-ucblue hover:bg-ucnavy"
+                          className="p-2 ml-1 border border-gray-800 rounded-lg text-sm flex max-w-[280px] text-ucblue hover:text-ucnavy"
                           href={quoteInfo.link || undefined}
                           target="_blank"
                           rel="noopener noreferrer"
                         >
                           {getSourceIcon(quoteInfo.source_type, 20)}
-                          <p className="truncate break-all ml-2">
+                          <p className="truncate break-all ml-2 text-ucblue">
                             {quoteInfo.semantic_identifier ||
                               quoteInfo.document_id}
                           </p>
@@ -142,7 +142,7 @@ export const SearchResultsDisplay: React.FC<SearchResultsDisplayProps> = ({
 
       {documents && documents.length > 0 && (
         <div className="mt-4">
-          <div className="font-bold text-gray-800 border-b mb-4 pb-1 border-gray-800">
+          <div className="font-bold border-b mb-4 pb-1 border-gray-800">
             Results
           </div>
           {removeDuplicateDocs(documents).map((doc) => (
@@ -160,7 +160,7 @@ export const SearchResultsDisplay: React.FC<SearchResultsDisplayProps> = ({
                 rel="noopener noreferrer"
               >
                 {getSourceIcon(doc.source_type, 20)}
-                <p className="truncate break-all ml-2">
+                <p className="truncate break-all ml-2 text-ucblue">
                   {doc.semantic_identifier || doc.document_id}
                 </p>
               </a>
