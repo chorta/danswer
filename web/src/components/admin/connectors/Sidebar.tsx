@@ -19,7 +19,7 @@ interface SidebarProps {
 
 export const Sidebar: React.FC<SidebarProps> = ({ collections }) => {
   return (
-    <aside className="w-64 bg-gray-900 text-gray-100 pl-4">
+    <aside className="w-64 bg-sand text-gray-100 pl-4">
       <nav className="space-y-2 pl-4">
         {collections.map((collection, collectionInd) => (
           <div key={collectionInd}>

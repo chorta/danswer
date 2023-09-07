@@ -92,8 +92,8 @@ export const SearchResultsDisplay: React.FC<SearchResultsDisplayProps> = ({
       {shouldDisplayQA && (
         <div className="min-h-[14rem]">
           <div className="p-4 border-2 rounded-md border-gray-700">
-            <div className="flex mb-1">
-              <h2 className="text font-bold my-auto">AI Answer</h2>
+            <div className="flex mb-1 text-gray-800">
+              <h2 className="text font-bold my-auto text-gray-800">AI Answer</h2>
             </div>
             {answerDisplay}
 
