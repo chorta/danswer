@@ -91,8 +91,8 @@ export const SearchResultsDisplay: React.FC<SearchResultsDisplayProps> = ({
     <>
       {shouldDisplayQA && (
         <div className="min-h-[14rem]">
-          <div className="p-4 border-2 rounded-md border-gray-700">
-            <div className="flex mb-1 text-gray-800">
+          <div className="p-4 text-gray-600 border-2 rounded-md border-gray-700">
+            <div className="flex mb-3 text-gray-800">
               <h2 className="text font-bold my-auto text-gray-800">AI Answer</h2>
             </div>
             {answerDisplay}
@@ -142,7 +142,7 @@ export const SearchResultsDisplay: React.FC<SearchResultsDisplayProps> = ({
 
       {documents && documents.length > 0 && (
         <div className="mt-4">
-          <div className="font-bold border-b mb-4 pb-1 border-gray-800">
+          <div className="font-bold border-b mb-4 pb-1 text-gray-800 border-gray-800">
             Results
           </div>
           {removeDuplicateDocs(documents).map((doc) => (
