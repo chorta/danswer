@@ -43,12 +43,12 @@ export function SourceSelector({
   };
 
   return (
-    <div className="bg-gray-900">
-      <div className="flex mb-2 pb-1 pl-2 border-b border-gray-800 mx-2">
-        <h2 className="font-bold my-auto">Filters</h2>
+    <div className="bg-sand">
+      <div className="flex mb-2 p-6 pl-2 border-b border-gray-800 mx-2">
+        <h2 className="font-bold my-auto text-gray-800">Filters</h2>
         <Funnel className="my-auto ml-2" size="20" />
       </div>
-      <div className="px-2">
+      <div className="p-2">
         {sources
           .filter((source) => existingSources.includes(source.internalName))
           .map((source) => (
